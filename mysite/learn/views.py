@@ -11,6 +11,8 @@ from django.http import HttpResponseRedirect
 import os
 from django.conf import settings 
 
+from .models import Information
+
 
 # 视图函数
 def index(request):
@@ -22,8 +24,9 @@ def index(request):
 
 
 def info(request):
+    info_list = Information.objects.all()
     context = {
-    
+        'info_list': info_list,
     }
     return render(request, 'info.html', context)
 

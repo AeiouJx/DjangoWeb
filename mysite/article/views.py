@@ -99,7 +99,7 @@ def article_list(request):
         article_list = article_list.order_by('-total_views')
     
     # 每页显示#篇文章
-    paginator = Paginator(article_list, 3)
+    paginator = Paginator(article_list, 5)
     # 获取 url 中的页码
     page = request.GET.get('page')
     # 将导航对象相应的页码内容返回给 articles
@@ -168,7 +168,7 @@ def article_create(request):
             notify.send(
                 request.user,
                 recipient = request.user,
-                verb = '更新了文章',
+                verb = '发表了新文章',
                 target = new_article,       
                 )
             
@@ -235,7 +235,15 @@ def article_update(request, id):
                 article.avatar = request.FILES.get('avatar')
             
             article.save()
-                  
+            
+            # 通知 
+            notify.send(
+                request.user,
+                recipient = request.user,
+                verb = '更新了文章',
+                target = article,       
+                )
+                
             # 完成后返回到修改后的文章中。需传入文章的 id 值
             return redirect("article:article_detail", id=id)
         # 如果数据不合法，返回错误信息
