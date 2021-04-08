@@ -1,4 +1,4 @@
-# 这是一个数据收集web项目
+# DjangoWeb 项目
 
 ### 由`Tangkz`与`QingFeng`合作完成
 
