@@ -12,6 +12,7 @@ from .models import ArticlePost
 from .forms import ArticlePostForm
 # 引入User模型
 from django.contrib.auth.models import User
+# 要求登录
 from django.contrib.auth.decorators import login_required
 # 引入分页模块
 from django.core.paginator import Paginator
@@ -99,7 +100,7 @@ def article_list(request):
         article_list = article_list.order_by('-total_views')
     
     # 每页显示#篇文章
-    paginator = Paginator(article_list, 5)
+    paginator = Paginator(article_list, 6)
     # 获取 url 中的页码
     page = request.GET.get('page')
     # 将导航对象相应的页码内容返回给 articles
@@ -129,7 +130,7 @@ def article_detail(request, id):
         # 包含 缩写、表格等常用扩展
         'markdown.extensions.extra',
         # 语法高亮扩展
-        'markdown.extensions.codehilite',
+        #'markdown.extensions.codehilite',# 有点小问题 无法正常高亮显示
         # 目录扩展
         'markdown.extensions.toc',
         ]
@@ -140,7 +141,7 @@ def article_detail(request, id):
     # 需要传递给模板的对象
     context = { 
         'article': article,
-        'toc': md.toc 
+        'toc': md.toc, 
         }
     # 载入模板，并返回context对象
     return render(request, 'article/detail.html', context)

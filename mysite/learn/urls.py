@@ -12,4 +12,5 @@ app_name = 'learn'
 urlpatterns = [
     path('home/', views.index, name='home'),
     path('info/', views.info, name='info'),
+    path('msggate/',views.msgproc, name='msggate'),
 ]

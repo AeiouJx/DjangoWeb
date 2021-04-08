@@ -50,7 +50,7 @@ class Music(models.Model):
 
 
 class Film(models.Model):
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=128)
     author = models.CharField(max_length=100)
     publish = models.DateTimeField(default=timezone.now)
     path = models.FilePathField()

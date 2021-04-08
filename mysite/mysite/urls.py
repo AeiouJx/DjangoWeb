@@ -24,13 +24,12 @@ from learn import views as learn_views
 import notifications.urls
 
 urlpatterns = [
-    # 后台
-    path('admin/', admin.site.urls),
+    
     # 主页
     path('',learn_views.index),
     # 我的物联网项目
     path('iot/', include('iot.urls', namespace='iot')),
-    # 供学习使用
+    # 供学习使用,新增功能测试
     path('learn/', include('learn.urls', namespace='learn')),
     # 文章管理
     path('article/', include('article.urls', namespace='article')),
@@ -46,6 +45,8 @@ urlpatterns = [
     path('notice/', include('notice.urls', namespace='notice')),
     # 第三方登录
     # path('accounts/', include('allauth.urls')),
+    # 后台
+    path('admin/', admin.site.urls),
 ]
 
 # 为以后上传的图片配置好了URL路径

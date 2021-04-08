@@ -13,3 +13,6 @@ class RaspberryPiForm(forms.ModelForm):
         model = RaspberryPi
         # 定义表单包含的字段
         fields = ('Temperature', 'weight')
+
+
+
