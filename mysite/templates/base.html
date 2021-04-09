@@ -7,6 +7,7 @@
 <head>
     <!-- 网站采用的字符编码 -->
     <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 预留网站标题的位置 -->
     <title>{% block title %}{% endblock %}</title>
     <!-- 引入bootstrap的css文件 -->
@@ -38,6 +39,7 @@
 	<script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<!-- 引入layer.js 弹窗 -->
     <script src="{% static 'layer/layer.js' %}"></script>
+	{% block script %}{% endblock script %}
 	<!-- 在jquery后面引入 -->
     {% include 'back_to_top_func.html' %}
 	

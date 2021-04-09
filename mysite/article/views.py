@@ -22,8 +22,10 @@ from django.db.models import Q
 import markdown
 # 消息通知
 from notifications.signals import notify
-
-
+# 评论
+from comment.models import Comment
+# 引入评论表单
+from comment.forms import CommentForm
 # 类视图
 from django.views.generic import ListView
 from django.views.generic import DetailView
@@ -120,6 +122,9 @@ def article_detail(request, id):
     # 取出相应的文章
     article = ArticlePost.objects.get(id=id)
     
+    # 取出文章评论
+    comments = Comment.objects.filter(article=id)
+    
     # 浏览量 +1
     article.total_views += 1
     article.save(update_fields=['total_views'])
@@ -137,11 +142,14 @@ def article_detail(request, id):
     )
     article.body = md.convert(article.body)
 
-    
+    # 引入评论表单
+    comment_form = CommentForm()
     # 需要传递给模板的对象
     context = { 
         'article': article,
         'toc': md.toc, 
+        'comments': comments,
+        'comment_form': comment_form,
         }
     # 载入模板，并返回context对象
     return render(request, 'article/detail.html', context)

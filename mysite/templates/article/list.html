@@ -52,7 +52,7 @@
         {% endif %}
     {% endif %}
 	<!-- 列表循环 -->
-    <div class="row mt-2">
+    <div class="col-10 row mt-2">
         {% for article in articles %}
 			
 			<!-- 文章内容 -->
@@ -80,6 +80,11 @@
 						<i class="fas fa-eye" style="color: lightskyblue;"></i>
 						{{ article.total_views }} 浏览&nbsp;&nbsp;&nbsp;
 					</span>
+					<span>
+						<i class="fas fa-comments" style="color: yellowgreen;"></i>
+						<!-- 修改为评论的计数 -->
+						{{ article.comments.count }}评论&nbsp;&nbsp;&nbsp;
+					</span>
 					<span style="color: blue;">
 						<i class="fas fa-comments" style="color: yellowgreen;"></i>
 						{{ article.created|date:'Y-m-d' }} 发布&nbsp;&nbsp;&nbsp;
@@ -89,10 +94,13 @@
 						{{ article.updated|date:'Y-m-d' }} 更新
 					</span>
 				</p>
+				<a href="{% url 'article:article_detail' article.id %}"
+				   style="color: Pink;">
+				   阅读全文>></a>
 			</div>
 			<!-- 标题图 -->
 			{% if article.avatar %}
-				<div class="col-4">
+				<div>
 					<img src="{{ article.avatar.url }}" 
 						 alt="avatar" 
 						 style="max-width:100%; border-radius: 20px"

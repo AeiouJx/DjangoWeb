@@ -1,6 +1,6 @@
 
 # iot/models.py
-
+from __future__ import unicode_literals
 from django.db import models
 # timezone 用于处理时间相关事务。
 from django.utils import timezone
@@ -26,18 +26,19 @@ class RaspberryPi(models.Model):
         return self.title
 
 
-
-
-
-
 class Book(models.Model):
-    name = models.CharField(max_length=150)
+    book_name = models.CharField(max_length=128)
     author = models.CharField(max_length=100)
-    publish = models.DateTimeField(default=timezone.now)
+    publish = models.DateTimeField(default=timezone.now)    
+    add_time = models.DateTimeField(auto_now_add=True)
     bio = models.CharField(max_length=200)
+    
     class Meta:
         ordering = ('-publish',)
-
+    
+    def __unicode__(self):
+        return self.book_name
+        
 
 class Music(models.Model):
     name = models.CharField(max_length=150)
@@ -47,7 +48,10 @@ class Music(models.Model):
     bio = models.CharField(max_length=200)
     class Meta:
         ordering = ('-publish',)
-
+        
+    def __str__(self):
+        return self.name
+        
 
 class Film(models.Model):
     name = models.CharField(max_length=128)
@@ -57,6 +61,9 @@ class Film(models.Model):
     bio = models.CharField(max_length=200)
     class Meta:
         ordering = ('-publish',)
+        
+    def __str__(self):
+        return self.name
 
 
 

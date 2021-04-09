@@ -43,51 +43,71 @@
 <!-- 新增两个 div 容器,预留具体页面的位置 -->
 <div id="wrapper">
 	<div class="container">
-	<div>
-		<ul class="nav">
-			<li class="nav-item">
-				<a class="nav-link" href="/download/static/image/site.jpg" download="site.jpg">
-					<i class="bi bi-download"></i> Download</a>
-			</li>
-		</ul>
+		<div>
+			<ul class="nav">
+				<li class="nav-item">
+					<a class="nav-link" href="/download/static/image/site.jpg" download="site.jpg">
+						<i class="bi bi-download"></i> Download</a>
+				</li>
+			</ul>
+		</div>
+		
+		<div>
+			<h3> 关于我们 </h3>
+			<ul>
+				<p>本站建于 2021 年 3 月 15 日。基于python语言</p>	
+				<p>后端：Django</p>	
+				<p>前端：Vue/Bootstrap</p>	
+				<p>服务器：Raspberry(Linux/Apache2)</p>
+				
+				<p>View on <a href="https://gitee.com/Tangkz/tang-long">Gitee</a></p>
+				<p>View on <a href="https://github.com/guihuaxin/">GitHub</a></p>
+				
+
+			</ul>
+		</div>
+		<hr>
+		<div>
+			<h3> 技术支持 </h3>
+			<ul>
+				{% for info in info_list %}
+				<li>
+					<p>{{ info.title }}
+						<a href='{{ info.link }}'>{{ info.link }}</a>
+						<span style="color: green;">&nbsp;&nbsp;&nbsp;&nbsp;
+						{{ info.created|date:'Y-m-d' }}</span>
+					</p>
+				</li>
+				{% endfor %}	
+			</ul>
+		</div>	
+	</div>
+	<div id="app">
+		<p>改编不是乱编，{% verbatim %}{{ string_from_api }}{% endverbatim %}</p>
 	</div>
 	
-	<div>
-		<h3> 关于我们 </h3>
-		<ul>
-			<p>本站建于 2021 年 3 月 15 日。基于python语言</p>	
-			<p>后端：Django</p>	
-			<p>前端：Vue/Bootstrap</p>	
-			<p>服务器：Raspberry(Linux/Apache2)</p>
-			
-			<p>View on <a href="https://gitee.com/Tangkz/tang-long">Gitee</a></p>
-			<p>View on <a href="https://github.com/guihuaxin/">GitHub</a></p>
-			
-
-		</ul>
-	</div>
-	<hr>
-	<div>
-		<h3> 技术支持 </h3>
-		<ul>
-			{% for info in info_list %}
-			<li>
-				<p>{{ info.title }}
-					<a href='{{ info.link }}'>{{ info.link }}</a>
-					<span style="color: green;">&nbsp;&nbsp;&nbsp;&nbsp;
-					{{ info.created|date:'Y-m-d' }}</span>
-				</p>
-			</li>
-			{% endfor %}	
-		</ul>
-	</div>	
+	<script>
+	var app = new Vue({
+		el: '#app', 
+		data () {
+			return {
+				string_from_api: '要向全国人民谢罪的！'
+			}
+		},
+	mounted () {
+		axios
+		.get('api/666')
+		.then(response => (this.string_from_api = response.data))
+		}           
+	})
+	</script>
 	<div id="push"></div>	
 </div>
 		
     <!-- 引入注脚 -->
     {% include 'footer.html' %}
-	
-	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
@@ -97,6 +117,7 @@
     <script src="{% static 'layer/layer.js' %}"></script>
 	<!-- 在jquery后面引入 -->
     {% include 'back_to_top_func.html' %}
+	
 	
 	<!-- 增加样式 -->
     <style>

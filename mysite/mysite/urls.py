@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.conf.urls import url
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -33,6 +34,8 @@ urlpatterns = [
     path('learn/', include('learn.urls', namespace='learn')),
     # 文章管理
     path('article/', include('article.urls', namespace='article')),
+    # 评论
+    path('comment/', include('comment.urls', namespace='comment')),
     # 用户管理
     path('userprofile/', include('userprofile.urls', namespace='userprofile')),
     # 密码重置

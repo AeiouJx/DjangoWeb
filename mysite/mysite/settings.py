@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'password_reset',   # 密码重置
     'ckeditor',         # 富文本编辑器
     'notifications',    # 消息通知
+    'corsheaders',  # 跨域访问
     
     # 自己创建
     'learn',
@@ -51,8 +52,10 @@ INSTALLED_APPS = [
     'userprofile',
     'article', 
     'notice',
+    'comment',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True  # 新增的跨域访问设置
 
 # 富文本编辑器
 CKEDITOR_CONFIGS = {
@@ -82,12 +85,37 @@ CKEDITOR_CONFIGS = {
         ],
         # 加入代码块插件
         'extraPlugins': ','.join(['codesnippet', 'widget', 'lineutils']),
+    },
+    # 将这份配置命名为 my_config
+    'my_config': {
+        'skin': 'moono-lisa',
+        'toolbar_Basic': [
+            ['Source', '-', 'Bold', 'Italic']
+        ],
+        'toolbar_Full': [
+            ['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', 'SpellChecker', 'Undo', 'Redo'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Image', 'Flash', 'Table', 'HorizontalRule'],
+            ['TextColor', 'BGColor'],
+            ['Smiley', 'SpecialChar'],
+            # 在工具栏中添加该功能的按钮
+            ['CodeSnippet'], ['Source'],
+
+        ],
+        'toolbar': 'Full',
+        'height': 291,
+        'width': 835,
+        'filebrowserWindowWidth': 940,
+        'filebrowserWindowHeight': 725,
+        # 添加的插件
+        'extraPlugins': 'codesnippet',
     }
 }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # 新加跨域访问
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -125,8 +153,17 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'djangodb',
+        'USER': 'root',
+        'PASSWORD': '123456',
+        'HOST': '127.0.0.1',
+    }
+}
+'''
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 

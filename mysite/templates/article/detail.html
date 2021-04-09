@@ -28,7 +28,7 @@
 					<i class="bi bi-eye" style="color: blue;"></i> 
 						阅览：{{ article.total_views }}&nbsp;					
 					<i class="fas fa-comments" style="color: yellowgreen;"></i> 
-						评论：{{ article.total_views }}&nbsp;
+						评论：{{ article.comments.count }}&nbsp;
 				</div>
 				{% if user == article.author %}
 				<div class="mt-1">
@@ -56,15 +56,68 @@
 			<div class="col-12">
 				<p>{{ article.body|safe }}</p>
 			</div>			
-		</div>	
-		<!-- 新增的目录 -->
-		<div class="col-3 mt-4">
-			<h4><strong>目录</strong></h4>
+			<!-- 发表评论 -->
 			<hr>
+			{% if user.is_authenticated %}
+				<div>
+					<form 
+						action="{% url 'comment:post_comment' article.id %}" 
+						method="POST"
+					>
+					{% csrf_token %}
+						<div class="form-group">
+							<label for="body">
+								<strong>
+									我也要发言：
+								</strong>
+							</label>
+							<div>
+								{{ comment_form.media }}
+								{{ comment_form.body }}
+							</div>
+						</div>
+						<!-- 提交按钮 -->
+						<button type="submit" class="btn btn-primary ">发表评论</button>                    
+					</form>
+				</div>
+				<br>
+			{% else %}
+				<br>
+				<h5 class="row justify-content-center">
+					请<a href="{% url 'userprofile:login' %}">登录</a>后回复
+				</h5>
+				<br>
+			{% endif %}
+
+			<!-- 显示评论 -->
+			<h4>共有{{ comments.count }}条评论</h4>
 			<div>
-				{{ toc|safe }}
+				{% for comment in comments %}
+					<hr>
+					<p>
+						<strong style="color: pink">
+							{{ comment.user }}
+						</strong> 于 
+						<span style="color: green">
+							{{ comment.created|date:"Y-m-d H:i:s" }}
+						</span> 时评论：
+					</p>
+					<div>{{ comment.body|safe }}</div>	
+				{% endfor %}
 			</div>
 		</div>
+		
+		<!-- 目录 -->
+		<div class="col-3 mt-4 sidebar" id="sidebar">
+			<div class="sidebar__inner">
+				<h4><strong>目录</strong></h4>
+				<hr>
+				<div>
+					{{ toc|safe }}
+				</div>
+			</div>
+		</div>
+		
     </div>
 </div>
 
@@ -95,4 +148,31 @@
 		})
 	}
 </script>
+{% block script %}
+<!-- 引入粘性侧边栏 -->
+<script src="{% static 'sticky_sidebar/jquery.sticky-sidebar.min.js' %}"></script>
+<script type="text/javascript">
+    $('#sidebar').stickySidebar({
+        topSpacing: 20,
+        bottomSpacing: 20,
+    });
+</script>
+<script>
+    $(".django-ckeditor-widget").removeAttr('style');
+</script>
+{% endblock script %}
+
+<!-- 粘性侧边栏样式 -->
+<style>
+    .sidebar{
+        will-change: min-height;
+    }
+
+    .sidebar__inner{
+        transform: translate(0, 0);
+        transform: translate3d(0, 0, 0);
+        will-change: position, transform;
+    }
+</style>
+
 {% endblock content %}

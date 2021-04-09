@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 # timezone 用于处理时间相关事务。
 from django.utils import timezone
 
+from django.urls import reverse
+
 from PIL import Image
 # 引入imagekit
 from imagekit.models import ProcessedImageField
@@ -68,7 +70,9 @@ class ArticlePost(models.Model):
         # return self.title 将文章标题返回
         return self.title
         
-        
+    # 获取文章地址
+    def get_absolute_url(self):
+        return reverse('article:article_detail', args=[self.id])    
         
         
     
