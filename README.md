@@ -1,2 +1,0 @@
-# DjangoWeb
-DjangoWeb
