@@ -1,0 +1,122 @@
+body {
+	
+	/* 弹性盒子 垂直居中	 */
+	align-items: center;
+	
+	/* 背景颜色属性	*/
+	background-color: #d0e4fe;
+  
+	/* 背景图片	 */
+	background: url('../image/bg.jpg');
+	
+	/* 	背景固定。即使一个元素拥有滚动机制，背景也不会随着元素的内容滚动。 */
+	background-attachment: fixed;
+	
+	/* 	图片居中 */
+	background-position: center;
+	
+	/* 	background-repeat定义背景图像的重复方式，no-repeat背景图像将仅显示一次 */
+	background-repeat: no-repeat;
+	
+	/* 把背景图片放大到适合元素容器的尺寸	 */
+	background-size: cover;
+
+	/* 网格布局	 */
+	display: grid;
+	height: 100vh;
+	/* 沿着对齐容器的中心对齐。	 */
+	place-items: center;
+}
+
+/* 主体DIV样式 */
+.container {
+	background-color:rgba(233,233,233,0.6);
+	border-radius: 0.7rem;
+	height: 460px;
+	max-width: 600px;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+
+/* 标题 */
+.form__title {
+	font-weight: 300;
+	margin: 0 auto;
+	margin-bottom: 1.25rem;
+	text-align: center;
+}
+
+.form-login {
+	width: 100%;
+	max-width: 400px;
+	padding: 15px;
+	margin: 0 auto;
+}
+.form-group {
+	margin-bottom: 5px;
+}
+
+/* 忘记密码字体样式 */
+.forget {
+	color: #333;
+	font-size: 0.9rem;
+	margin: 1.5rem 0;
+	text-decoration: none;
+}
+.form-login a{
+	display: inline-block;
+	margin: 1.5rem 0;
+	font-size: 0.9rem;
+	line-height: 10px;
+}
+
+/* 按钮设置 */
+.btn {
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 0.9rem 4rem;
+	text-align: center;
+	text-decoration: none;
+    display: inline-block;
+	font-size: 0.8rem;
+	margin: 4px 2px;
+	cursor: pointer;
+	letter-spacing: 0.1rem;	
+}
+
+.btn1 {
+	background-color: white;
+	color: black;
+	border: 2px solid #4CAF50;
+	border-radius: 20px;
+	width: 100%;
+}	
+/* 鼠标悬停在按钮上的样式。 */
+.btn1:hover {
+	background-color: #4CAF50;	/* Green */
+	color: white;
+    -webkit-transition-duration: 0.3s; /* Safari */
+	transition-duration: 0.3s;
+}	
+.btn1:active {
+	transform: scale(0.95);
+}
+.btn1:focus {
+	outline: none;
+}
+
+.btn2: {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+
+
+

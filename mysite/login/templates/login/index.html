@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+		
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+	<link href="{% static 'login/css/index.css' %}" rel="stylesheet"/>
+	<title>首页</title>
+</head>
+
+<body>
+
+<!-- 定义导航栏 -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="container">
+
+	<!-- 导航栏商标 -->
+	<a class="navbar-brand" href="#">GHX</a>
+
+	<!-- 导航入口 -->
+	<div>
+		<ul class="navbar-nav">
+			<!-- 条目 -->
+			<li class="nav-item">
+				<a class="nav-link" href="/index/">首页</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">下载</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">文档</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{% url 'article:article_list' %}">文章</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">关于</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/logout/">登出</a>
+			</li>
+		</ul>
+	</ul>
+	</div>
+
+	</div>
+</nav>
+	
+
+	
+<div class="container-main" id="maincontainer">
+
+	<!-- pic -->
+	<div class="container-image">
+		<img src="{% static 'login/image/瑛1.jpg' %}" height="400">
+		<img src="/static/login/image/瑛2.jpg" height="400">
+		<img src="/static/login/image/瑛3.jpg" height="400">
+		<img src="{% static 'login/image/瑛4.jpg' %}" height="300">
+		<img src="/static/login/image/瑛5.jpg" height="300">
+		<img src="/static/login/image/瑛6.jpg" height="300">
+		<img src="/static/login/image/bg.jpg" height="800">
+	</div>
+	
+	<!-- download -->
+	<div>
+		<a href="/download/media/downloads/ToDeskv2.2.0.zip" download="ToDeskv2.2.0.zip">下载 ToDeskv2.2.0.zip</a>
+		<a href="/download/media/image/bg.jpg" download="bg.jpg">bg.jpg</a>
+		<a href="/download/login/static/login/image/瑛1.jpg" download="瑛1.jpg">瑛1.jpg</a>
+	
+	</div>
+	
+	
+	
+</div>
+
+
+<!-- Footer -->
+<div>
+    <br><br><br>
+</div>
+<footer class="py-3 bg-dark fixed-bottom">
+    <div class="container">
+		<!-- Open source -->
+		<div>
+			<li><a href="https://github.com/guihuaxin">Github</a></li>
+			<li><a href="https://gitee.com/Tangkz">gitee</a></li>
+		</div>
+		<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=6Y6cgIGciJGAh6mPhpGEiICFx4qGhA" style="text-decoration:none;">
+		<img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_22.png"/>
+		</a>
+        <p class="m-0 text-center text-white">Copyright &copy; long & tang 2021</p>
+    </div>
+</footer>
+
+
+</body>
+</html>

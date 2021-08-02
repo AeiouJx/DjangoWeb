@@ -18,27 +18,9 @@
 
 ## 简单的使用方法：
 
-### *	for Linux
-克隆项目到本地
-
+### 克隆项目到本地
 	git clon git@gitee.com:Tangkz/tang-long.git	
-进入项目目录
 
-	cd ./tang-long	
-给与脚本可执行权限
-
-	sudo chmod 755 run.sh	
-执行脚本
-
-	./run.sh	
-没有权限就加 sudo
-
-
-
-### *	for windowns
-创建`pythonenv`虚拟环境
-
-	git clon git@gitee.com:Tangkz/tang-long.git
 	
 使用`pip`安装第三方依赖
 

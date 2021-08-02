@@ -1,0 +1,49 @@
+body {
+	align-items: center;
+	background-color: #d0e4fe;
+	background: url('../image/bg.jpg');
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: grid;
+	height: 100vh;
+	place-items: center;
+}
+
+/* 主体DIV样式 */
+.container {
+	background-color:rgba(233,233,233,0.6);
+	border-radius: 0.7rem;
+	height: 460px;
+	max-width: 600px;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+
+/* 标题 */
+.form__title {
+    /* 字体粗细 */
+    font-weight: 300;
+    margin: 0;
+	margin-bottom: 1.25rem;
+}
+.container__form {
+	opacity: 2.0;
+	
+}
+.form-register {
+  width: 100%;
+  max-width: 400px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-group {
+  margin-bottom: 5px;
+}
+form a{
+  display: inline-block;
+  margin-top:25px;
+  line-height: 10px;
+}
